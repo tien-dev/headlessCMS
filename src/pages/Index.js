@@ -16,7 +16,8 @@ export default class Index extends Component {
 
   state = {
     homepage: null,
-    navigation: null
+    navigation: null,
+    siteSetting: null,
   };
 
   componentDidMount() {
@@ -29,7 +30,7 @@ export default class Index extends Component {
       })
       .catch(error => console.log("Error when connect to API 1", error));
 
-      axios
+    axios
       .get(SERVER_URL + "/navigation")
       .then(response => {
 
@@ -37,9 +38,18 @@ export default class Index extends Component {
         this.setState({ navigation: response.data });
       })
       .catch(error => console.log("Error when connect to API 2", error));
+
+    axios
+      .get(SERVER_URL + "/site-setting")
+      .then(response => {
+        console.log("get site-setting response", response);
+        this.setState({ siteSetting: response.data });
+      })
+      .catch(error => console.log("Error when connect to API 3", error));
   }
- 
+
   render() {
+    const {siteSetting} = this.state
 
     let navigation = this.state.navigation;
     let topNav = navigation == null ? [] : navigation.topNav;
@@ -49,6 +59,9 @@ export default class Index extends Component {
     var homepage = this.state.homepage;
     var features = homepage == null ? [] : homepage.featureSection;
     var hero = homepage == null ? [] : homepage.heroCarousel;
+
+    let logo = siteSetting ? (SERVER_URL + siteSetting.logo.url) : ''
+    console.log('>>>>>>>>> logo: ', logo)
 
       return (
         <React.Fragment>
@@ -62,7 +75,8 @@ export default class Index extends Component {
               nav: mainMenu,
               brand: {
                 text: '',
-                image: '/images/BurgerKing.svg',
+                // image: '/images/BurgerKing.svg',
+                image: logo,
                 width: '110',
               },
               //'primary-action': 'Language',
@@ -80,7 +94,7 @@ export default class Index extends Component {
             </Carousel>
           </div>
 
-          { 
+          {
             features.map( (item, i) => <CallToAction1 key={i} content={item} /> )
           }
 

@@ -13,6 +13,8 @@
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.21.0",
     "clsx": "latest",
+    "mobx": "^6.0.4",
+    "mobx-react": "^7.0.5",
     "react": "latest",
     "react-dom": "latest",
     "react-html-parser": "^2.0.2",

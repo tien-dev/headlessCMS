@@ -93,9 +93,9 @@ export default function Navigation(props) {
         </Link>
 
         {content.nav &&
-          content.nav.map((item, i) => <Link key={i} href={item.link||'#'} color="textPrimary" variant="body2" className={classes.link}>{item.name}</Link> ) 
+          content.nav.map((item, i) => <Link key={i} href={item.link||'#'} color="textPrimary" variant="body2" className={classes.link}>{item.name}</Link> )
         }
-        
+
         {content['primary-action'] &&
           <Button variant="contained" color="secondary" className={classes.primaryAction}>{content['primary-action']}</Button>
         }
@@ -103,7 +103,7 @@ export default function Navigation(props) {
           <MenuIcon />
         </IconButton>
       </Toolbar>
-      
+
       <Drawer anchor="left" open={state.open} onClose={toggleDrawer(false)}>
         <div className={classes.drawerContainer}>
           <Box mb={1} ml={2} pb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor="background.emphasis">
@@ -112,7 +112,7 @@ export default function Navigation(props) {
             </Link>
           </Box>
           <List>
-            {content.nav && 
+            {content.nav &&
               content.nav.map((item, i) => {
                 <ListItem button key={item.name}>
                   <ListItemIcon className={classes.iconWrapper}>
